@@ -1,0 +1,183 @@
+{
+  "background-color": "#fcfcfc",
+  "edge": {
+    "background-color": "#f4f5f6",
+    "background-opacity": 1.0,
+    "border-radius": 1.0,
+    "labelanchor": "center",
+    "margin": 1.0,
+    "padding": 1.0,
+    "font": {
+      "attributes": {},
+      "color": "#5b636d",
+      "family": "IBM Plex Mono",
+      "opacity": 1.0,
+      "size": 6.0
+    },
+    "labelfont": {
+      "attributes": {},
+      "color": "#5b636d",
+      "family": "IBM Plex Mono",
+      "opacity": 1.0,
+      "size": 6.0
+    },
+    "frame": {
+      "attributes": {},
+      "color": "#d2d9df",
+      "enabled": false,
+      "opacity": 0.5,
+      "thickness": 0.5
+    },
+    "line": {
+      "arrowsize": 5.0,
+      "attributes": {},
+      "color": "#d2d9df",
+      "opacity": 1.0,
+      "thickness": 0.6
+    }
+  },
+  "edge-highlighted": {
+    "background-color": "#fcf6f0",
+    "background-opacity": 1.0,
+    "border-radius": 1.0,
+    "labelanchor": "center",
+    "margin": 1.0,
+    "padding": 1.0,
+    "font": {
+      "attributes": {},
+      "color": "#eaa15f",
+      "family": "IBM Plex Mono",
+      "opacity": 1.0,
+      "size": 6.0
+    },
+    "labelfont": {
+      "attributes": {},
+      "color": "#eaa15f",
+      "family": "IBM Plex Mono",
+      "opacity": 1.0,
+      "size": 6.0
+    },
+    "frame": {
+      "attributes": {},
+      "color": "#eaa15f",
+      "enabled": false,
+      "opacity": 0.5,
+      "thickness": 0.5
+    },
+    "line": {
+      "arrowsize": 5.0,
+      "attributes": {},
+      "color": "#eaa15f",
+      "opacity": 1.0,
+      "thickness": 0.6
+    }
+  },
+  "graph": {
+    "background-color": "#fcfcfc",
+    "background-opacity": 1.0,
+    "border-radius": 3.0,
+    "labelanchor": "center",
+    "margin": 20.0,
+    "padding": 20.0,
+    "font": {
+      "attributes": {},
+      "color": "#202328",
+      "family": "IBM Plex Mono",
+      "opacity": 0.9,
+      "size": 10.0
+    },
+    "frame": {
+      "attributes": {},
+      "color": "#d2d9df",
+      "enabled": false,
+      "opacity": 0.9,
+      "thickness": 0.6
+    }
+  },
+  "node": {
+    "background-color": "#f6f8fa",
+    "background-opacity": 1.0,
+    "border-radius": 2.0,
+    "labelanchor": "start",
+    "margin": 0.0,
+    "padding": 4.0,
+    "font": {
+      "attributes": {},
+      "color": "#5b636d",
+      "family": "IBM Plex Mono",
+      "opacity": 1.0,
+      "size": 7.0
+    },
+    "labelfont": {
+      "attributes": {},
+      "color": "#5b636d",
+      "family": "IBM Plex Mono",
+      "opacity": 1.0,
+      "size": 7.0
+    },
+    "frame": {
+      "attributes": {},
+      "color": "#d2d9df",
+      "enabled": true,
+      "opacity": 1.0,
+      "thickness": 0.5
+    }
+  },
+  "node-highlighted": {
+    "background-color": "#f0bb8c",
+    "background-opacity": 1.0,
+    "border-radius": 2.0,
+    "labelanchor": "start",
+    "margin": 0.0,
+    "padding": 4.0,
+    "font": {
+      "attributes": {},
+      "color": "#202328",
+      "family": "IBM Plex Mono",
+      "opacity": 1.0,
+      "size": 7.0
+    },
+    "labelfont": {
+      "attributes": {},
+      "color": "#eaa15f",
+      "family": "IBM Plex Mono",
+      "opacity": 1.0,
+      "size": 7.0
+    },
+    "frame": {
+      "attributes": {},
+      "color": "#eaa15f",
+      "enabled": true,
+      "opacity": 1.0,
+      "thickness": 0.5
+    }
+  },
+  "subgraph": {
+    "background-color": "#f7f7f8",
+    "background-opacity": 1.0,
+    "border-radius": 3.0,
+    "labelanchor": "center",
+    "margin": 15.0,
+    "padding": 15.0,
+    "font": {
+      "attributes": {},
+      "color": "#5b636d",
+      "family": "IBM Plex Mono",
+      "opacity": 0.9,
+      "size": 8.0
+    },
+    "frame": {
+      "attributes": {},
+      "color": "#d2d9df",
+      "enabled": false,
+      "opacity": 0.9,
+      "thickness": 0.6
+    }
+  },
+  "utils": {
+    "defs": [],
+    "webfonts": [
+      "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700"
+    ]
+  }
+}
