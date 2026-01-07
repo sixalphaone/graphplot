@@ -13,7 +13,7 @@ readme = "README.md"
 homepage = "https://graphplot.io"
 repository = "https://github.com/sixalphaone/graphplot"
 keywords = ["plot", "plotting", "graph", "multigraph", "networks"]
-categories = ["visualization", "mathematics", "graphics", "data structures"]
+categories = ["visualization", "mathematics", "graphics", "data-structures"]
 
 [dependencies]
 anyhow = "1.0"
