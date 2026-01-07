@@ -2,11 +2,18 @@
 name = "graphplot"
 version = "0.4.0"
 edition = "2024"
-license = "MIT OR Apache-2.0"
+license = "MIT"
+
+description = """
+Efficient graph visualization tool for large graphs and networks.
+Generates high-quality SVG plots, supporting advanced layouts,
+graphics and mathematical notation via Typst.
+"""
 readme = "README.md"
+homepage = "https://graphplot.io"
 repository = "https://github.com/sixalphaone/graphplot"
 keywords = ["plot", "plotting", "graph", "multigraph", "networks"]
-categories = ["visualization", "algorithms", "data structures", "mathematics", "graphics"]
+categories = ["visualization", "mathematics", "graphics", "data structures"]
 
 [dependencies]
 anyhow = "1.0"
