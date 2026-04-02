@@ -16,6 +16,7 @@ Graphplot is an efficient tool for visualizing large-scale graphs. It generates 
 ## What Graphplot is not
 - A tool for creating diagrams. 
 
+
 --- 
 ## Releases
 ### 0.5.0 (2026-04-02)
