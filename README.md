@@ -22,3 +22,14 @@ Graphplot is an efficient tool for visualizing large-scale graphs. It generates 
 - Added support for both PDF and PNG export (with `feature=pdf` and `feature=png`).
 - Added config suitable for print: `PlotConfig::print()`.
 - Added support for `background-opacity` on main plot.
+
+
+--- 
+## License
+### IBM Plex
+```
+Copyright © 2017 IBM Corp. with Reserved Font Name "Plex"
+This Font Software is licensed under the SIL Open Font License, Version 1.1 . This license is copied below, and is also available with a FAQ at: https://openfontlicense.org
+
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+```
