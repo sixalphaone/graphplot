@@ -17,8 +17,8 @@ Graphplot is an efficient tool for visualizing large-scale graphs. It generates 
 - A tool for creating diagrams. 
 
 --- 
-# Releases
-## 0.5.0 (2026-04-02)
+## Releases
+### 0.5.0 (2026-04-02)
 - Added support for both PDF and PNG export (with `feature=pdf` and `feature=png`).
 - Added config suitable for print: `PlotConfig::print()`.
 - Added support for `background-opacity` on main plot.
