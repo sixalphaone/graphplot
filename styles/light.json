@@ -1,14 +1,16 @@
 {
   "background-color": "#fcfcfc",
+  "background-opacity": 1.0,
+  "fullscreen": true,
   "edge": {
     "background-color": "#f4f5f6",
     "background-opacity": 1.0,
     "border-radius": 1.0,
-    "labelanchor": "center",
     "margin": 1.0,
     "padding": 1.0,
     "font": {
       "attributes": {},
+      "anchor": "start",
       "color": "#5b636d",
       "family": "IBM Plex Mono",
       "opacity": 1.0,
@@ -16,6 +18,7 @@
     },
     "labelfont": {
       "attributes": {},
+      "anchor": "start",
       "color": "#5b636d",
       "family": "IBM Plex Mono",
       "opacity": 1.0,
@@ -40,17 +43,18 @@
     "background-color": "#fcf6f0",
     "background-opacity": 1.0,
     "border-radius": 1.0,
-    "labelanchor": "center",
     "margin": 1.0,
     "padding": 1.0,
     "font": {
       "attributes": {},
+      "anchor": "start",
       "color": "#eaa15f",
       "family": "IBM Plex Mono",
       "opacity": 1.0,
       "size": 6.0
     },
     "labelfont": {
+      "anchor": "start",
       "attributes": {},
       "color": "#eaa15f",
       "family": "IBM Plex Mono",
@@ -76,11 +80,11 @@
     "background-color": "#fcfcfc",
     "background-opacity": 1.0,
     "border-radius": 3.0,
-    "labelanchor": "center",
     "margin": 20.0,
     "padding": 20.0,
     "font": {
       "attributes": {},
+      "anchor": "middle",
       "color": "#202328",
       "family": "IBM Plex Mono",
       "opacity": 0.9,
@@ -98,11 +102,11 @@
     "background-color": "#f6f8fa",
     "background-opacity": 1.0,
     "border-radius": 2.0,
-    "labelanchor": "start",
     "margin": 0.0,
     "padding": 4.0,
     "font": {
       "attributes": {},
+      "anchor": "middle",
       "color": "#5b636d",
       "family": "IBM Plex Mono",
       "opacity": 1.0,
@@ -110,6 +114,7 @@
     },
     "labelfont": {
       "attributes": {},
+      "anchor": "start",
       "color": "#5b636d",
       "family": "IBM Plex Mono",
       "opacity": 1.0,
@@ -127,11 +132,11 @@
     "background-color": "#f0bb8c",
     "background-opacity": 1.0,
     "border-radius": 2.0,
-    "labelanchor": "start",
     "margin": 0.0,
     "padding": 4.0,
     "font": {
       "attributes": {},
+      "anchor": "middle",
       "color": "#202328",
       "family": "IBM Plex Mono",
       "opacity": 1.0,
@@ -139,6 +144,7 @@
     },
     "labelfont": {
       "attributes": {},
+      "anchor": "start",
       "color": "#eaa15f",
       "family": "IBM Plex Mono",
       "opacity": 1.0,
@@ -156,11 +162,11 @@
     "background-color": "#f7f7f8",
     "background-opacity": 1.0,
     "border-radius": 3.0,
-    "labelanchor": "center",
     "margin": 15.0,
     "padding": 15.0,
     "font": {
       "attributes": {},
+      "anchor": "middle",
       "color": "#5b636d",
       "family": "IBM Plex Mono",
       "opacity": 0.9,

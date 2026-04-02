@@ -109,6 +109,11 @@ impl PlotConfig {
             url: "https://api.graphplot.io/".into(),
         }
     }
+    /// Default light theme suitable for print (disabled background colors).
+    pub fn print() -> Self {
+        let config = Self::mode(false);
+        config.style(|s| s.background_color("#ffffffff").graph(|g| g.background_color("#ffffffff")))
+    }
     /// Default light theme.
     pub fn light() -> Self {
         Self::mode(false)

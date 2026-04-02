@@ -286,11 +286,21 @@ impl Multigraph {
     /// * `api_key` - valid api_key to access Graphplot API.
     /// * `config` - optional argument spesifying user defined plot [`Config`].
     pub fn save<F: Display, T: Display>(&self, filename: F, api_key: T, config: Option<PlotConfig>) -> Result<()> {
+        let filename = filename.to_string();
+
         // 1. plot the Multigraph
         let plot = self.plot(api_key, config).context("Error when plotting Multigraph")?;
 
-        // 2. save Plot as svg
-        plot.save(filename).context("Error exporting Plot to svg")
+        // check: which filetype?
+        if filename.ends_with(".svg") {
+            plot.save_svg(filename).context("Error exporting plot to SVG")
+        } else if filename.ends_with(".pdf") {
+            plot.save_pdf(filename).context("Error exporting plot to PDF")
+        } else if filename.ends_with(".png") {
+            plot.save_png(filename).context("Error exporting plot to PNG")
+        } else {
+            bail!("Unknown file format. Supports only: .svg, .pdf or .png");
+        }
     }
     /// Plots the Multigraph and returns a `PlotSVG`. Useful when nesting Multigraphs.
     ///

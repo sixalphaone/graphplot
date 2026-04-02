@@ -2,8 +2,6 @@ use std::fmt::Display;
 
 use serde::{Deserialize, Serialize};
 
-use crate::LabelAnchor;
-
 use super::{FontStyle, FrameStyle, RectStyling};
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
@@ -12,7 +10,6 @@ pub struct NodeStyle {
     background_color: String,
     background_opacity: f32,
     border_radius: f32,
-    labelanchor: LabelAnchor,
     padding: f32,
     margin: f32,
     height: Option<f32>,
@@ -30,9 +27,6 @@ impl NodeStyle {
     pub fn get_frame(&self) -> &FrameStyle {
         &self.frame
     }
-    pub fn get_labelanchor(&self) -> LabelAnchor {
-        self.labelanchor
-    }
     pub fn get_labelfont(&self) -> &FontStyle {
         &self.labelfont
     }
@@ -44,10 +38,6 @@ impl NodeStyle {
     }
     pub fn frame(mut self, configure_frame: impl FnOnce(FrameStyle) -> FrameStyle) -> Self {
         self.frame = configure_frame(self.frame);
-        self
-    }
-    pub fn labelanchor(mut self, anchor: LabelAnchor) -> Self {
-        self.labelanchor = anchor;
         self
     }
     pub fn labelfont(mut self, configure_labelfont: impl FnOnce(FontStyle) -> FontStyle) -> Self {

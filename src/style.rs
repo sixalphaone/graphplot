@@ -1,6 +1,6 @@
 use core::iter::DoubleEndedIterator;
-use std::collections::BTreeMap;
 use std::fmt::Display;
+use std::{collections::BTreeMap, fmt::Debug};
 
 use serde::{Deserialize, Serialize};
 
@@ -16,6 +16,8 @@ pub use nodestyle::*;
 #[serde(rename_all = "kebab-case")]
 pub struct Style {
     background_color: String,
+    background_opacity: f32,
+    fullscreen: bool, // svg only
     edge: EdgeStyle,
     edge_highlighted: EdgeStyle,
     graph: GraphStyle,
@@ -45,6 +47,12 @@ impl Style {
     pub fn get_background_color(&self) -> &str {
         &self.background_color
     }
+    pub fn get_background_opacity(&self) -> f32 {
+        self.background_opacity
+    }
+    pub fn get_fullscreen(&self) -> bool {
+        self.fullscreen
+    }
     pub fn get_edge(&self) -> &EdgeStyle {
         &self.edge
     }
@@ -71,6 +79,15 @@ impl Style {
     /// Adds background-color to the plot.
     pub fn background_color<S: Display>(mut self, color: S) -> Self {
         self.background_color = color.to_string();
+        self
+    }
+    pub fn background_opacity(mut self, opacity: f32) -> Self {
+        self.background_opacity = opacity;
+        self
+    }
+    /// Disables SVG fullscreen background color.
+    pub fn disable_fullscreen(mut self) -> Self {
+        self.fullscreen = false;
         self
     }
     /// Adds a section to <defs>.
@@ -135,17 +152,21 @@ impl StyleUtils {
 }
 
 // -- shared
-#[derive(Clone, Debug, Deserialize, Serialize)]
+#[derive(Clone, Debug, Default, Deserialize, Serialize)]
 #[serde(rename_all = "kebab-case")]
 pub struct FontStyle {
     color: String,
     family: String,
+    anchor: TextAnchor,
     opacity: f32,
     size: f32,
     attributes: BTreeMap<String, String>,
 }
 impl FontStyle {
     // -- getters
+    pub fn get_anchor(&self) -> TextAnchor {
+        self.anchor
+    }
     pub fn get_color(&self) -> &str {
         &self.color
     }
@@ -163,6 +184,10 @@ impl FontStyle {
     }
 
     // -- setters
+    pub fn anchor(mut self, anchor: TextAnchor) -> Self {
+        self.anchor = anchor;
+        self
+    }
     pub fn color<S: Display>(mut self, color: S) -> Self {
         self.color = color.to_string();
         self
@@ -186,7 +211,7 @@ impl FontStyle {
     }
 }
 
-#[derive(Clone, Debug, Deserialize, Serialize)]
+#[derive(Clone, Debug, Default, Deserialize, Serialize)]
 #[serde(rename_all = "kebab-case")]
 pub struct FrameStyle {
     enabled: bool,
@@ -292,12 +317,23 @@ impl LineStyle {
     }
 }
 
-#[derive(Copy, Clone, Debug, Deserialize, Serialize)]
+#[derive(Copy, Clone, Default, Deserialize, Serialize)]
 #[serde(rename_all = "kebab-case")]
-pub enum LabelAnchor {
+pub enum TextAnchor {
+    #[default]
     Start,
-    Center,
+    Middle,
     End,
+}
+impl Debug for TextAnchor {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let anchor = match self {
+            Self::Start => "start",
+            Self::Middle => "middle",
+            Self::End => "end",
+        };
+        write!(f, "{anchor}")
+    }
 }
 
 // -- shared: traits

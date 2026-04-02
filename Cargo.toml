@@ -1,6 +1,6 @@
 [package]
 name = "graphplot"
-version = "0.4.0"
+version = "0.5.0"
 edition = "2024"
 license = "MIT"
 
@@ -15,9 +15,24 @@ repository = "https://github.com/sixalphaone/graphplot"
 keywords = ["plot", "plotting", "graph", "multigraph", "networks"]
 categories = ["visualization", "mathematics", "graphics", "data-structures"]
 
+
 [dependencies]
 anyhow = "1.0"
 serde_json = "1.0"
 
 serde = { version = "1.0", features = ["derive"] }
 ureq = { version = "3.1", features = ["json"] }
+
+# features deps
+include_dir = { version = "0.7", optional = true }
+resvg = { version = "0.45", optional = true }
+svg2pdf = { version = "0.13", optional = true }
+
+[dev-dependencies]
+rand = "0.9"
+svg = "0.18"
+
+[features]
+default = []
+png = ["dep:include_dir", "dep:resvg"]
+pdf = ["dep:include_dir", "dep:resvg", "dep:svg2pdf"]
