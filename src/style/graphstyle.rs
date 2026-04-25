@@ -10,8 +10,8 @@ pub struct GraphStyle {
     background_color: String,
     background_opacity: f32,
     border_radius: f32,
-    padding: f32,
     margin: f32,
+    padding: f32,
     height: Option<f32>,
     width: Option<f32>,
     // -- objects
@@ -48,11 +48,11 @@ impl RectStyling for GraphStyle {
     fn get_border_radius(&self) -> f32 {
         self.border_radius
     }
-    fn get_padding(&self) -> f32 {
-        self.padding
-    }
     fn get_margin(&self) -> f32 {
         self.margin
+    }
+    fn get_padding(&self) -> f32 {
+        self.padding
     }
     fn get_height(&self) -> Option<f32> {
         self.height
@@ -74,13 +74,31 @@ impl RectStyling for GraphStyle {
         self.border_radius = radius.into() as f32;
         self
     }
+    fn margin<I: Into<f64>>(mut self, margin: I) -> Self {
+        self.margin = margin.into() as f32;
+        self
+    }
     fn padding<I: Into<f64>>(mut self, padding: I) -> Self {
         self.padding = padding.into() as f32;
         self
     }
-    fn margin<I: Into<f64>>(mut self, margin: I) -> Self {
-        self.margin = margin.into() as f32;
-        self
+    fn scale<S: Into<f64>>(mut self, scale: S) -> Self {
+        // 1. scale self
+        let scale_f32 = scale.into() as f32;
+        self.border_radius = self.border_radius * scale_f32;
+        self.margin = self.margin * scale_f32;
+        self.padding = self.padding * scale_f32;
+
+        // check: any width or height?
+        if let Some(width) = self.width {
+            self.width = Some(width * scale_f32);
+        }
+        if let Some(height) = self.height {
+            self.height = Some(height * scale_f32);
+        }
+
+        // 2. scale children
+        self.font(|f| f.scale(scale_f32)).frame(|f| f.scale(scale_f32))
     }
     fn height<I: Into<f64>>(mut self, height: I) -> Self {
         self.height = Some(height.into() as f32);

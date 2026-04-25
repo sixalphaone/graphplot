@@ -12,10 +12,10 @@ use include_dir::{Dir, include_dir};
 #[cfg(any(feature = "png", feature = "pdf"))]
 use resvg::usvg::Tree;
 
-mod config;
 mod edge;
 mod multigraph;
 mod node;
+mod options;
 mod style;
 mod subgraph;
 
@@ -32,10 +32,10 @@ static FONTS_DIR: Dir = include_dir!("$CARGO_MANIFEST_DIR/fonts");
 // -- public export
 pub mod extras;
 
-pub use config::*;
 pub use edge::{ArrowKind, Edge};
 pub use multigraph::Multigraph;
 pub use node::{Node, NodeShape};
+pub use options::*;
 pub use style::*;
 pub use subgraph::Subgraph;
 

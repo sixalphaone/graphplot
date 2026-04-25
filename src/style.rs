@@ -95,6 +95,16 @@ impl Style {
         self.utils.defs.push(def.to_string());
         self
     }
+    /// Scales every child element.
+    pub fn scale<S: Into<f64>>(self, scale: S) -> Self {
+        let scale_f32 = scale.into() as f32;
+        self.edge(|e| e.scale(scale_f32))
+            .edge_highlighted(|e| e.scale(scale_f32))
+            .graph(|g| g.scale(scale_f32))
+            .node(|n| n.scale(scale_f32))
+            .node_highlighted(|n| n.scale(scale_f32))
+            .subgraph(|s| s.scale(scale_f32))
+    }
     /// Adds a webfont URL to the SVG. E.g: "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700".
     pub fn webfont<S: Display>(mut self, font: S) -> Self {
         self.utils.webfonts.push(font.to_string());
@@ -196,11 +206,15 @@ impl FontStyle {
         self.family = family.to_string();
         self
     }
-    pub fn opacity<I: Into<f64>>(mut self, new_opacity: I) -> Self {
+    pub fn opacity<O: Into<f64>>(mut self, new_opacity: O) -> Self {
         self.opacity = new_opacity.into() as f32;
         self
     }
-    pub fn size<I: Into<f64>>(mut self, new_size: I) -> Self {
+    pub fn scale<S: Into<f64>>(mut self, scale: S) -> Self {
+        self.size = self.size * scale.into() as f32;
+        self
+    }
+    pub fn size<S: Into<f64>>(mut self, new_size: S) -> Self {
         self.size = new_size.into() as f32;
         self
     }
@@ -255,6 +269,10 @@ impl FrameStyle {
         self.opacity = new_opacity.into() as f32;
         self
     }
+    pub fn scale<S: Into<f64>>(mut self, scale: S) -> Self {
+        self.thickness = self.thickness * scale.into() as f32;
+        self
+    }
     pub fn thickness<I: Into<f64>>(mut self, new_thickness: I) -> Self {
         self.thickness = new_thickness.into() as f32;
         self
@@ -306,6 +324,12 @@ impl LineStyle {
         self.opacity = new_opacity.into() as f32;
         self
     }
+    pub fn scale<S: Into<f64>>(mut self, scale: S) -> Self {
+        let scale_f32 = scale.into() as f32;
+        self.arrowsize = self.arrowsize * scale_f32;
+        self.thickness = self.thickness * scale_f32;
+        self
+    }
     pub fn thickness<I: Into<f64>>(mut self, new_thickness: I) -> Self {
         self.thickness = new_thickness.into() as f32;
         self
@@ -320,8 +344,8 @@ impl LineStyle {
 #[derive(Copy, Clone, Default, Deserialize, Serialize)]
 #[serde(rename_all = "kebab-case")]
 pub enum TextAnchor {
-    #[default]
     Start,
+    #[default]
     Middle,
     End,
 }
@@ -353,6 +377,7 @@ pub trait RectStyling {
     fn border_radius<I: Into<f64>>(self, radius: I) -> Self;
     fn padding<I: Into<f64>>(self, padding: I) -> Self;
     fn margin<I: Into<f64>>(self, margin: I) -> Self;
+    fn scale<S: Into<f64>>(self, scale: S) -> Self;
     /// Sets minimal height.
     fn height<I: Into<f64>>(self, height: I) -> Self;
     /// Sets minimal width.

@@ -100,11 +100,17 @@ impl Edge {
         self
     }
     /// Sets a port for head-Node.
+    ///
+    /// # Notes
+    /// - Not compatible with `Layout::Diagram` and `Layout::DiagramBalanced`.
     pub fn headport(mut self, port: Port) -> Self {
         self.options.headport = Some(port);
         self
     }
     /// Sets a port for tail-Node.
+    ///
+    /// # Notes
+    /// - Not compatible with `Layout::Diagram` and `Layout::DiagramBalanced`.
     pub fn tailport(mut self, port: Port) -> Self {
         self.options.tailport = Some(port);
         self

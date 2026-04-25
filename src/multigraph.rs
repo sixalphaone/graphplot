@@ -3,11 +3,11 @@ use std::{
     fmt::Display,
 };
 
-use anyhow::{Context, Result, bail};
+use anyhow::{Context, Result, anyhow, bail};
 use serde::{Deserialize, Serialize};
 use ureq::Agent;
 
-use crate::{Edge, EdgeId, Node, NodeId, PlotConfig, PlotSVG, Subgraph, SubgraphId};
+use crate::{Edge, EdgeId, Node, NodeId, Options, PlotSVG, Subgraph, SubgraphId};
 
 /// Represents a [Multigraph](https://en.wikipedia.org/wiki/Multigraph) (supports multiple egdes between same pair of nodes).
 /// Supports both directed and undirected edges specified by [`Edge`] builder methods.
@@ -284,12 +284,12 @@ impl Multigraph {
     /// # Arguments
     /// * `filename` - name of the exported SVG plot: "plot.svg", or full path: "plots/test/plot.svg".
     /// * `api_key` - valid api_key to access Graphplot API.
-    /// * `config` - optional argument spesifying user defined plot [`Config`].
-    pub fn save<F: Display, T: Display>(&self, filename: F, api_key: T, config: Option<PlotConfig>) -> Result<()> {
+    /// * `options` - optional argument spesifying user defined plot [`Options`].
+    pub fn save<F: Display, T: Display>(&self, filename: F, api_key: T, options: Option<Options>) -> Result<()> {
         let filename = filename.to_string();
 
         // 1. plot the Multigraph
-        let plot = self.plot(api_key, config).context("Error when plotting Multigraph")?;
+        let plot = self.plot(api_key, options).context("Error when plotting Multigraph")?;
 
         // check: which filetype?
         if filename.ends_with(".svg") {
@@ -306,13 +306,13 @@ impl Multigraph {
     ///
     /// # Arguments
     /// * `api_key` - valid API-key to access Graphplot API.
-    /// * `config` - optional argument spesifying user defined plot [`Config`].
-    pub fn plot<T: Display>(&self, api_key: T, config: Option<PlotConfig>) -> Result<PlotSVG> {
+    /// * `options` - optional argument spesifying user defined plot [`Options`].
+    pub fn plot<T: Display>(&self, api_key: T, options: Option<Options>) -> Result<PlotSVG> {
         #[derive(Clone, Debug, Serialize)]
         struct MultigraphPlotRequest<'a> {
             multigraph: &'a Multigraph,
             api_key: String,
-            config: &'a PlotConfig,
+            options: &'a Options,
         }
         #[derive(Debug, Clone, Serialize, Deserialize)]
         struct MultigraphPlotResponse {
@@ -326,21 +326,21 @@ impl Multigraph {
         }
 
         // check: user defined theme?
-        let config = match config {
+        let options = match options {
             Some(userdefined) => userdefined,
-            None => PlotConfig::default(),
+            None => Options::default(),
         };
 
         // 1. send request to server
         let agent_config = Agent::config_builder().http_status_as_error(false).build();
         let agent = Agent::new_with_config(agent_config);
-        let endpoint = format!("{url}/multigraph", url = config.get_url());
+        let endpoint = format!("{url}/multigraph", url = options.get_url());
         let mut response = agent
             .post(endpoint)
             .header("Authorization", &format!("Bearer {api_key}"))
             .send_json(&MultigraphPlotRequest {
                 multigraph: &self,
-                config: &config,
+                options: &options,
                 api_key: api_key.to_string(),
             })
             .context("Error with request to Graphplot API")?;
@@ -352,12 +352,12 @@ impl Multigraph {
                 let status = response.status();
                 match response.body_mut().read_json::<ApiErrorResponse>() {
                     Ok(api_error) => bail!("{status:?}: {}", api_error.error),
-                    Err(_) => bail!("{status}: Failed to parse error-response from server (JSON)"),
+                    Err(error) => bail!(anyhow!(error).context("{status}: Failed to parse error-response from server (JSON)")),
                 }
             }
         };
 
         // return
-        Ok(PlotSVG::from(plot.content, plot.width, plot.height, config.get_style()))
+        Ok(PlotSVG::from(plot.content, plot.width, plot.height, options.get_style()))
     }
 }
