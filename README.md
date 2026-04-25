@@ -17,7 +17,7 @@ Graphplot is an efficient tool for visualizing large-scale graphs and diagrams. 
 
 --- 
 ## Releases
-### 0.6.0 (2026-04-25)
+### 0.6.1 (2026-04-25)
 - Supports diagrams (with Elk layout engine).
 
 ### 0.5.0 (2026-04-02)

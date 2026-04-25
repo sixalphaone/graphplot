@@ -78,6 +78,11 @@ impl Options {
         // return
         self
     }
+    /// Sets the line style of the final plot.
+    pub fn lines(mut self, new_lines: Lines) -> Self {
+        self.lines = new_lines;
+        self
+    }
     /// Sets the orientation of the final plot.
     pub fn orientation(mut self, new_orientation: Orientation) -> Self {
         self.orientation = new_orientation;
@@ -113,13 +118,6 @@ impl Options {
     /// Customize style of the final plot (e.g colors, font, font-size, borders, arrowsize, edge-thickness etc).
     pub fn style(mut self, configure_style: impl FnOnce(Style) -> Style) -> Self {
         self.style = configure_style(self.style);
-        self
-    }
-
-    // -- private
-    /// Sets the line style of the final plot.
-    fn _lines(mut self, new_lines: Lines) -> Self {
-        self.lines = new_lines;
         self
     }
 }
