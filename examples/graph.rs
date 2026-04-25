@@ -1,6 +1,6 @@
 use std::env;
 
-use graphplot::{Edge, Layout, Multigraph, Node, PlotConfig};
+use graphplot::{Edge, Layout, Multigraph, Node, Options};
 
 fn main() {
     let mut graph = Multigraph::new();
@@ -25,7 +25,7 @@ fn main() {
 
         // add edge
         graph.add_edge(
-            Edge::from(from_id, to_id).label(format!("{from} -> {to}")),
+            Edge::from(from_id, to_id).typst(format!("$ {from} arrow.r {to} $ ")),
             true,
         );
     }
@@ -35,7 +35,7 @@ fn main() {
     graph.highlight_nodes([1, 2, 4]);
 
     // 3. export plot
-    let config = PlotConfig::default().layout(Layout::Radial);
+    let config = Options::default().layout(Layout::Radial);
     let api_key = env::var("GP_API_KEY").expect("No Graphplot API env variable");
     graph
         .save("graph.svg", api_key, Some(config))
