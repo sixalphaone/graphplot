@@ -6,13 +6,13 @@ license = "MIT"
 
 description = """
 Efficient graph visualization tool for large graphs and networks.
-Generates high-quality SVG plots, supporting advanced layouts,
+Generates high-quality SVG plots (or PNG/PDF), supporting advanced layouts,
 graphics and mathematical notation via Typst.
 """
 readme = "README.md"
 homepage = "https://graphplot.io"
 repository = "https://github.com/sixalphaone/graphplot"
-keywords = ["plot", "plotting", "graph", "multigraph", "networks"]
+keywords = ["plot", "diagram", "graph", "multigraph", "networks"]
 categories = ["visualization", "mathematics", "graphics", "data-structures"]
 
 
